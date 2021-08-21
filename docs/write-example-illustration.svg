@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg color-interpolation="auto" color-rendering="auto" fill="black" font-family="'Dialog'" font-size="12px" image-rendering="auto" shape-rendering="auto" stroke="black" stroke-linecap="square" stroke-miterlimit="10" text-rendering="auto" viewBox="0 0 398 137" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<clipPath id="a">
+<path d="m531 387h398v137h-398v-137z"/>
+</clipPath>
+<clipPath id="c">
+<path d="m1.8515-48.398h270.26v93.029h-270.26v-93.029z"/>
+</clipPath>
+<clipPath id="b">
+<path d="m1.873 1.3516h269.54v92.783h-269.54v-92.783z"/>
+</clipPath>
+</defs>
+<g transform="matrix(1.4727 0 0 1.4727 -2.7266 71.273)" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+<image width="276" height="49" clip-path="url(#c)" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARQAAAAxCAYAAAAbZlZIAAACIklEQVR4Xu3d14pU
+QRSG0TKNYUTFMGNGHcMgYo4IBtQxvf/7uH+Khr62qwWr1wfr9vRVbfYZODWtSZIk
+SZIkSZIkaf4OARtlLeXBh8uRchTYCDnvOfdDh0selAdvlRPlVNkGppZzfrIcb324
+LAbLSi0Pk/zIuXKx7JRdYEo53znn58uZ1gfLsdaHykrlAXlQhsmFcr3cLvfKfWBK
+Od975Wa5XM62/naS5WKlLSUDJStPNpNr5UF5Ul6W18CUcr6flYetLxA75XTry8VK
+AyUTKetOtpM8OMPkXflYPgNTyvl+X16U/XK19VefrTZgoOSPM5daX4MyufJj38oP
+YEoHrQ+WLA+Pyo3W31KGDZSsPHm3yjqUH8qP/gam9LN8bX1Ledz631IMFOCvGCjA
+MAYKMIyBAgxjoADDGCjAMAYKMIyBAgxjoADD/POB8r38AqaUheFLW+NAybc8d1v/
+ludD69/yZKgA8zlofXF429bwLY+vjWGzfGp9O8kCsd8Gfm28fB9KLlfKw5+WV+UN
+MKX8aeN569vJnTbwPpTFjW15WK6Ey+qz1/pFSxkuwHxyvnNdya1ypfWFIm8qeWNZ
+qUyjPCRbSoZK7pjMtMq1cPkhYD4537utLxG5/jF/Rx1yp2xaDJW8P2VKbbc+XIB5
+5ZxnkGSZWAyTlV53lsuD/F8e2Dw580OHiSRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJ
+kiRJ0n/VHxMKTHG0qfbGAAAAAElFTkSuQmCC"/>
+<path transform="matrix(.679 0 0 .679 -358.72 -311.19)" d="m541 471h374.97v26.893h-374.97z" clip-path="url(#a)" fill="#9cf" image-rendering="auto" stroke="none"/>
+</g>
+<g transform="translate(-531 -387)" font-family="'Consolas'" shape-rendering="geometricPrecision" stroke-linecap="butt" stroke-miterlimit="1.45" text-rendering="geometricPrecision">
+<text x="543" y="487.3585" clip-path="url(#a)" stroke="none" xml:space="preserve">0001001                  1001000110110111011011010011...</text>
+</g>
+<g transform="translate(-531 -387)" fill="#396" font-family="sans-serif" font-size="10px" shape-rendering="geometricPrecision" stroke="#396" stroke-linecap="butt" stroke-miterlimit="1.45" text-rendering="geometricPrecision">
+<text x="848.46" y="509.2912" clip-path="url(#a)" stroke="none" xml:space="preserve">SPI Boot Flash</text>
+</g>
+<g transform="matrix(1.4766,0,0,1.4766,-2.7656,-1.9958)" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+<image width="276" height="49" clip-path="url(#b)" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARQAAAAxCAYAAAAbZlZIAAACPElEQVR4Xu3c125U
+MRSGUQdCEgiihipa6Bf0KiSqQuf934f9y4xAXDIegcz6pHV75spb9kmOW5MkSZIk
+SZIkSZIkSZIkSZIkSZIkSZIkSZIkSVJbA/4LKysP31f2/7AOTG2x1rPuhw6XPCwP
+PlA2y8FyCJha1nnWe9b9sKGyGCYbZbscLSfKTjkFTCnrO+v8SOvDZTFUli4PycMy
+TPID58vlcq1cB6Z0tfV1fq4cb32orLcBu5QMlGx7sjPJMLlR7pZH5QkwncflQbnT
++nA52/pOJaeUpQdKjjs5S50sV8q98ry8Km+B6bwpL8uz1ofKpdZ3KVttwLEnAyXb
+nZyrMq0yvV6X9+UTMJ2PZa/1ofKw9eNPNhTZWAwbKKfLzdan1rvyuXwDpvO19aGS
+nUo2EHlfutMMFOAPGCjAMAYKMIyBAgxjoADDGCjAMAYKMIyBAgxjoADD/JWBkn/R
+zQ8Dc/lSPrQVD5TFtzz5GjHf8uQHf/8GAJjDXlvhtzyLr413y/3yovXplZ0KMJ/c
+JpBbBXJVSe5FyV1IQ742zgM2y7Fyodxu/a6Ep63/IDCXvNbISSRXleQ1R+5Byn1I
+mQNDBkpubDvc+jnqYutnqlutDxdgPhkkOepkE5HTyXbrc2CtLVkekGNPplOGSrY+
+eUGbW5xyPRwwl6ztM62/N83FSln3G63PgSEthkoemvcpmVb5EWBe+WPMVvs5TJbe
+nfxaHpbjTx6cy2qB+WW9Z90PHSaSJEmSJEmSJEn61/oONWI/+No9/zoAAAAASUVO
+RK5CYII="/>
+<path transform="matrix(.6772 0 0 .6772 -357.75 -260.74)" d="m541 414.11h374.97v26.893h-374.97z" clip-path="url(#a)" fill="#cfc" image-rendering="auto" stroke="none"/>
+</g>
+<g transform="translate(-531 -387)" font-family="'Consolas'" shape-rendering="geometricPrecision" stroke-linecap="butt" stroke-miterlimit="1.45" text-rendering="geometricPrecision">
+<text x="543" y="430.4657" clip-path="url(#a)" stroke="none" xml:space="preserve">110101001011                  10110001001001000110110...</text>
+</g>
+<g transform="translate(-531 -387)" fill="#396" font-family="sans-serif" font-size="10px" shape-rendering="geometricPrecision" stroke="#396" stroke-linecap="butt" stroke-miterlimit="1.45" text-rendering="geometricPrecision">
+<text x="878.7763" y="409.8236" clip-path="url(#a)" stroke="none" xml:space="preserve">flash.bin</text>
+</g>
+<g transform="translate(-531 -387)" fill="#ff9" shape-rendering="geometricPrecision" stroke="#ff9" text-rendering="geometricPrecision">
+<path d="m624.79 414.11h112.93v26.893h-112.93z" clip-path="url(#a)" stroke="none"/>
+</g>
+<g transform="translate(-531 -387)" fill="#36f" shape-rendering="geometricPrecision" stroke="#36f" stroke-linecap="butt" stroke-miterlimit="1.45" stroke-width="2" text-rendering="geometricPrecision">
+<path d="m624.79 414.11h112.93v26.893h-112.93z" clip-path="url(#a)" fill="none"/>
+<text x="660.2406" y="432.2675" clip-path="url(#a)" font-family="sans-serif" stroke="none" stroke-width="1" xml:space="preserve">768 KiB</text>
+</g>
+<g transform="translate(-531 -387)" fill="#396" font-family="sans-serif" font-size="10px" shape-rendering="geometricPrecision" stroke="#396" stroke-linecap="butt" stroke-miterlimit="1.45" text-rendering="geometricPrecision">
+<text x="623.3815" y="409.8236" clip-path="url(#a)" stroke="none" xml:space="preserve">512 KiB offset</text>
+</g>
+<g transform="translate(-531 -387)" fill="#ff9" shape-rendering="geometricPrecision" stroke="#ff9" text-rendering="geometricPrecision">
+<path d="m592.02 471h112.93v26.893h-112.93z" clip-path="url(#a)" stroke="none"/>
+</g>
+<g transform="translate(-531 -387)" fill="#36f" shape-rendering="geometricPrecision" stroke="#36f" stroke-linecap="butt" stroke-miterlimit="1.45" stroke-width="2" text-rendering="geometricPrecision">
+<path d="m592.02 471h112.93v26.893h-112.93z" clip-path="url(#a)" fill="none"/>
+<text x="627.4708" y="489.1603" clip-path="url(#a)" font-family="sans-serif" stroke="none" stroke-width="1" xml:space="preserve">768 KiB</text>
+</g>
+<g transform="translate(-531 -387)" fill="#396" font-family="sans-serif" font-size="10px" shape-rendering="geometricPrecision" stroke="none" stroke-linecap="butt" stroke-miterlimit="1.45" text-rendering="geometricPrecision">
+<text x="591.3999" y="509.7004" clip-path="url(#a)" xml:space="preserve">256 KiB offset</text>
+<text x="649.3365" y="460.6042" clip-path="url(#a)" fill="rgb(51,102,255)" font-size="12px" xml:space="preserve">Write</text>
+</g>
+<g transform="translate(-531 -387)" fill="#36f" shape-rendering="geometricPrecision" stroke="#36f" stroke-dasharray="12,4" stroke-linecap="butt" stroke-miterlimit="1.45" stroke-width="2" text-rendering="geometricPrecision">
+<path d="m624.79 440.88-32.195 30.103" clip-path="url(#a)" fill="none"/>
+</g>
+<g transform="translate(-531 -387)" fill="#36f" shape-rendering="geometricPrecision" stroke="#36f" stroke-dasharray="12,4" stroke-linecap="butt" stroke-miterlimit="1.45" stroke-width="2" text-rendering="geometricPrecision">
+<path d="m737.27 441-32.668 29.986" clip-path="url(#a)" fill="none"/>
+</g>
+</svg>
