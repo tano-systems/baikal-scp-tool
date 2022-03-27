@@ -120,31 +120,31 @@ Display information about utility, shared library and kernel module versions.
 Write flattened device tree blob (DTB) to SPI Boot Flash from update.dtb file:
 
 ```
-# baikal-scp-tool -w update.dtb -p dtb
+# baikal-scp-flash -w update.dtb -p dtb
 ```
 
 Write a file flash.bin downloaded from the remote server (http://example.com/firmware/latest/flash.bin) to the SPI Boot Flash:
 
 ```
-# baikal-scp-tool -w http://example.com/firmware/latest/flash.bin
+# baikal-scp-flash -w http://example.com/firmware/latest/flash.bin
 ```
 
 Read full SPI Boot Flash contents to flash.bin file:
 
 ```
-# baikal-scp-tool -r flash.bin
+# baikal-scp-flash -r flash.bin
 ```
 
 Erase 256 KiB on SPI Boot Flash at 8 MiB offset:
 
 ```
-# baikal-scp-tool -e -s 0x40000 -o 0x800000
+# baikal-scp-flash -e -s 0x40000 -o 0x800000
 ```
 
 Write a block of 768 KiB from flash.bin file to SPI Boot Flash memory at 256 KiB offset, skipping the first 512 KiB of the file:
 
 ```
-# baikal-scp-tool --write flash.bin --size 0xc0000 --offset 0x40000 --skip 0x80000
+# baikal-scp-flash --write flash.bin --size 0xc0000 --offset 0x40000 --skip 0x80000
 ```
 
 See this illustration:
