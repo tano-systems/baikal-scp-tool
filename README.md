@@ -58,6 +58,8 @@ The following steps will be performed sequentially when performing the write ope
 2. writing data to flash memory;
 3. read back and verify written data with the original data (if the `-n` option is not specified).
 
+You can specify an HTTP (`http://`), HTTPS (`https://`) or FTP (`ftp://`) link to the file on the remote server as the `<filepath>`. In this case, the file will be downloaded from the remote server and then used to write to the SPI Boot Flash memory.
+
 ### Option `-r`, `--read <filepath>`
 
 Read SPI Boot Flash contents to file `<filepath>`. You can select SPI Boot Flash offset by built-in named partition (option `-p`, `--part`) or manually specify flash offset (option `-o`, `--offset`) and read size (option `-s`, `--size`).
@@ -119,6 +121,12 @@ Write flattened device tree blob (DTB) to SPI Boot Flash from update.dtb file:
 
 ```
 # baikal-scp-tool -w update.dtb -p dtb
+```
+
+Write a file flash.bin downloaded from the remote server (http://example.com/firmware/latest/flash.bin) to the SPI Boot Flash:
+
+```
+# baikal-scp-tool -w http://example.com/firmware/latest/flash.bin
 ```
 
 Read full SPI Boot Flash contents to flash.bin file:

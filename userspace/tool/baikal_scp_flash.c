@@ -8,6 +8,10 @@
 
 #include "baikal_scp_tool.h"
 
+#ifdef USE_LIBCURL
+#include <curl/curl.h>
+#endif
+
 #define MODE_NONE          0
 
 #define MODE_SHOW_VERSION  1
@@ -108,6 +112,12 @@ static void display_usage(void)
 		"        or manually specify flash offset (option -o, --offset) and write size\n"
 		"        (option -s, --size). Also you can skip specified amount of bytes from\n"
 		"        the beginning of input image file using the skip option (-k, --skip).\n"
+#ifdef USE_LIBCURL
+		"        You can specify an HTTP (http://), HTTPS (https://) or FTP (ftp://)\n"
+		"        link to the file on the remote server as the <filepath>. In this case,\n"
+		"        the file will be downloaded from the remote server and then used to\n"
+		"        write to the SPI Boot Flash memory.\n"
+#endif
 		"\n"
 		"  -r, --read <filepath>\n"
 		"        Read SPI Boot Flash contents to file <filepath>. You can select\n"
@@ -501,11 +511,46 @@ int display_version(void)
 	return ret;
 }
 
+#ifdef USE_LIBCURL
+
+static size_t curl_retrieved_size = 0;
+
+static size_t curl_write_cb(void *contents, size_t size, size_t nmemb, void *userp)
+{
+	size_t realsize = size * nmemb;
+	size_t nmemb_written;
+	FILE *fp = (FILE *)userp;
+
+	if (!fp)
+		return 0;
+
+	nmemb_written = fwrite(contents, size, nmemb, fp);
+	if (nmemb_written != nmemb)
+		return 0;
+
+	curl_retrieved_size += realsize;
+	return realsize;
+}
+
+#endif
+
 int main(int argc, char *argv[])
 {
 	int fh = -1;
 	int ret;
 	baikal_scp_flash_info_t flash_info;
+
+#ifdef USE_LIBCURL
+	FILE *ftmp = NULL;
+
+	static const char *supported_protos[] = {
+		"http://",
+		"https://",
+		"scp://",
+		"ftp://",
+		NULL
+	};
+#endif
 
 	ret = parse_cli_args(argc, argv);
 	if (ret) {
@@ -546,9 +591,72 @@ int main(int argc, char *argv[])
 
 		case MODE_FLASH_WRITE: {
 			struct stat st;
-			stat(filepath, &st);
-			filesize = st.st_size;
 
+#ifdef USE_LIBCURL
+			int use_curl = 0;
+			int i;
+
+			for (i = 0; supported_protos[i]; i++) {
+				if (!strncmp(filepath, supported_protos[i], strlen(supported_protos[i]))) {
+					use_curl = 1;
+					break;
+				}
+			}
+
+			if (use_curl) {
+				CURL *curl_handle;
+				CURLcode res;
+
+				ftmp = tmpfile();
+				if (!ftmp) {
+					ret = -1;
+					fprintf(stderr, "ERROR: Failed to open temporary file\n");
+					break;
+				}
+
+				if (!quiet) {
+					fprintf(stdout, "Downloading %s...\n", filepath);
+				}
+
+				curl_global_init(CURL_GLOBAL_ALL);
+				curl_handle = curl_easy_init();
+
+				curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, 0L);
+				curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, quiet ? 1L : 0L);
+				curl_easy_setopt(curl_handle, CURLOPT_URL, filepath);
+				curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, curl_write_cb);
+				curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)ftmp);
+				curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+
+				res = curl_easy_perform(curl_handle);
+				if(res != CURLE_OK) {
+					ret = -1;
+					fprintf(stderr, "ERROR: Downloading failed: %s\n",
+					curl_easy_strerror(res));
+					break;
+				}
+
+				filesize = curl_retrieved_size;
+				fh = fileno(ftmp);
+				rewind(ftmp);
+
+				if (!quiet) {
+					fprintf(stdout, "Received %u bytes\n", filesize);
+				}
+			}
+			else {
+#endif
+				if ((fh = open(filepath, O_RDONLY)) == -1) {
+					ret = errno;
+					fprintf(stderr, "ERROR: Cannot open \"%s\" for reading (%d)\n", filepath, ret);
+					break;
+				}
+
+				stat(filepath, &st);
+				filesize = st.st_size;
+#ifdef USE_LIBCURL
+			}
+#endif
 			if (!size)
 				size = (filesize < flash_info.total_size)
 					? filesize : flash_info.total_size;
@@ -567,12 +675,6 @@ int main(int argc, char *argv[])
 			    ((size + offset) > flash_info.total_size)) {
 				ret = EINVAL;
 				fprintf(stderr, "ERROR: Invalid size, offset or skip value or its combination\n");
-				break;
-			}
-
-			if ((fh = open(filepath, O_RDONLY)) == -1) {
-				ret = errno;
-				fprintf(stderr, "ERROR: Cannot open \"%s\" for reading (%d)\n", filepath, ret);
 				break;
 			}
 
@@ -624,6 +726,14 @@ int main(int argc, char *argv[])
 	}
 
 exit:
+#ifdef USE_LIBCURL
+	if (ftmp) {
+		if (fh == fileno(ftmp))
+			fh = -1;
+		fclose(ftmp);
+	}
+#endif
+
 	if (fh != -1)
 		close(fh);
 
