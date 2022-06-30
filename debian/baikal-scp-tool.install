@@ -1,0 +1,3 @@
+baikal-scp-flash usr/sbin
+libbaikal-scp-lib.so usr/lib
+libbaikal-scp-lib.so.1.0.0 usr/lib

@@ -1,0 +1,39 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/pkg-info.mk
+
+ifeq ($(DEB_BUILD_ARCH),arm64)
+	KARCH ?= "arm64"
+else
+	KARCH ?= "amd64"
+endif
+
+ifeq ($(KVERSION_SHORT),)
+	KVERSION_SHORT ?= $(shell uname -r)
+	KVERSION ?= $(KVERSION_SHORT)
+else
+	KVERSION ?= "$(KVERSION_SHORT)-$(KARCH)"
+endif
+
+%:
+	dh $@ --parallel
+
+override_dh_auto_build:
+	cmake . -DKERNEL_VERSION=$(KVERSION_SHORT) -DKERNEL_ARCH=$(KARCH) && make && make baikal-scp
+
+override_dh_auto_install:
+	if [ -z "$(KVERSION)" ]; then \
+		echo "Can't determine target kernel version (empty KVERSION)"; \
+		exit 1; \
+	fi
+	if [ ! -z "$(KVERSION)" ]; then \
+		echo "Rewriting kernel modules dir in baikal-scp-modules.install to $(KVERSION)"; \
+		sed -E "s/<KVERSION>/$(KVERSION)/" debian/baikal-scp-modules.install.template > \
+			debian/baikal-scp-modules.install; \
+	fi
+
+	dh_auto_install
+
+override_dh_strip:
+	dh_strip -pbaikal-scp-tool --dbg-package=baikal-scp-tool-dbg
+	dh_strip -pbaikal-scp-modules

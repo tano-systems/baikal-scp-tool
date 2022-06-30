@@ -1,0 +1,30 @@
+Source: baikal-scp
+Section: main
+Priority: extra
+Maintainer: Anton Kikin <a.kikin@tano-systems.com>
+Build-Depends: debhelper (>= 9), bzip2
+Standards-Version: 3.9.3
+#Vcs-Git: https://github.com/tano-systems/baikal-scp-tool.git
+#Vcs-Browser: https://github.com/tano-systems/baikal-scp-tool
+
+Package: baikal-scp-modules
+Architecture: any
+Description: Kernel module for interacting with Baikal Electronics BE-M1000 SoC Boot SPI Flash from Linux userspace
+
+Package: baikal-scp-tool
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Utility for interacting with Baikal Electronics BE-M1000 SoC Boot SPI Flash from Linux userspace
+
+Package: baikal-scp-tool-dev
+Architecture: any
+Depends: baikal-scp-tool (= ${binary:Version})
+Section: libdevel
+Description: This package contains development files for libbaikal-scp-lib
+
+Package: baikal-scp-tool-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: baikal-scp-tool (=${binary:Version})
+Description: Debugging symbols for baikal-scp-tool
