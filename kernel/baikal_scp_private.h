@@ -28,10 +28,6 @@
 
 #include "baikal_sip_svc_flash.h"
 
-#define BAIKAL_SCP_DRV_VERSION_MAJOR  1
-#define BAIKAL_SCP_DRV_VERSION_MINOR  0
-#define BAIKAL_SCP_DRV_VERSION_PATCH  0
-
 #define BAIKAL_SCP_DRV_VERSION_STR \
 	__stringify(BAIKAL_SCP_DRV_VERSION_MAJOR) "." \
 	__stringify(BAIKAL_SCP_DRV_VERSION_MINOR) "." \

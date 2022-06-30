@@ -1,7 +1,24 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.2)
 
 project(baikal-scp C)
 include(GNUInstallDirs)
+
+# Driver version
+set(BAIKAL_SCP_DRV_VERSION_MAJOR 1)
+set(BAIKAL_SCP_DRV_VERSION_MINOR 0)
+set(BAIKAL_SCP_DRV_VERSION_PATCH 0)
+
+# Shared librrary version
+set(BAIKAL_SCP_LIB_VERSION_MAJOR 1)
+set(BAIKAL_SCP_LIB_VERSION_MINOR 0)
+set(BAIKAL_SCP_LIB_VERSION_PATCH 0)
+set(BAIKAL_SCP_LIB_VERSION_STRING
+	${BAIKAL_SCP_LIB_VERSION_MAJOR}.${BAIKAL_SCP_LIB_VERSION_MINOR}.${BAIKAL_SCP_LIB_VERSION_PATCH})
+
+# CLI utility version
+set(BAIKAL_SCP_TOOL_VERSION_MAJOR 1)
+set(BAIKAL_SCP_TOOL_VERSION_MINOR 1)
+set(BAIKAL_SCP_TOOL_VERSION_PATCH 0)
 
 option(USE_LIBCURL "Build with libcurl support" ON)
 
@@ -44,7 +61,8 @@ set(
 
 add_custom_target(
 	baikal-scp
-	COMMAND ${KBUILD_CMD} modules
+	COMMAND ${CMAKE_COMMAND} -E env "KCFLAGS=-DBAIKAL_SCP_DRV_VERSION_MAJOR=${BAIKAL_SCP_DRV_VERSION_MAJOR} -DBAIKAL_SCP_DRV_VERSION_MINOR=${BAIKAL_SCP_DRV_VERSION_MINOR} -DBAIKAL_SCP_DRV_VERSION_PATCH=${BAIKAL_SCP_DRV_VERSION_PATCH}"
+	${KBUILD_CMD} modules
 )
 
 add_custom_target(
@@ -58,9 +76,26 @@ add_library(baikal-scp-lib SHARED
 	userspace/lib/baikal_scp_lib_flash.c
 )
 
+target_compile_definitions(baikal-scp-lib PUBLIC
+	-DBAIKAL_SCP_LIB_VERSION_MAJOR=${BAIKAL_SCP_LIB_VERSION_MAJOR}
+	-DBAIKAL_SCP_LIB_VERSION_MINOR=${BAIKAL_SCP_LIB_VERSION_MINOR}
+	-DBAIKAL_SCP_LIB_VERSION_PATCH=${BAIKAL_SCP_LIB_VERSION_PATCH}
+)
+
+set_target_properties(baikal-scp-lib PROPERTIES
+	VERSION   ${BAIKAL_SCP_LIB_VERSION_STRING}
+	SOVERSION ${BAIKAL_SCP_LIB_VERSION_STRING}
+)
+
 # CLI utility
 add_executable(baikal-scp-flash
 	userspace/tool/baikal_scp_flash.c
+)
+
+target_compile_definitions(baikal-scp-flash PUBLIC
+	-DBAIKAL_SCP_TOOL_VERSION_MAJOR=${BAIKAL_SCP_TOOL_VERSION_MAJOR}
+	-DBAIKAL_SCP_TOOL_VERSION_MINOR=${BAIKAL_SCP_TOOL_VERSION_MINOR}
+	-DBAIKAL_SCP_TOOL_VERSION_PATCH=${BAIKAL_SCP_TOOL_VERSION_PATCH}
 )
 
 target_link_libraries(baikal-scp-flash baikal-scp-lib ${requiredlibs})
